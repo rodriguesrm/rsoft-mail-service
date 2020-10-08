@@ -8,7 +8,7 @@ namespace RSoft.Mail.Business.Models
     /// <summary>
     /// Mail message object
     /// </summary>
-    public class Message : IMessage, IMessageHandle
+    public class Message : IMessageHandle
     {
 
         #region Local objects/variables
@@ -180,11 +180,15 @@ namespace RSoft.Mail.Business.Models
         }
 
         ///<inheritdoc/>
-        public void Attachment(IFileAttachment file)
+        public void AddAttachment(IFileAttachment file)
         {
             if (_files.FirstOrDefault(x => x.Filename.ToLower() == file.Filename.ToLower()) == null)
                 _files.Add(file);
         }
+
+        ///<inheritdoc/>
+        public void AddHeader(string key, string value)
+            => _headers.TryAdd(key, value);
 
         #endregion
 

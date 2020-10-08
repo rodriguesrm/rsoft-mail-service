@@ -4,7 +4,7 @@
     /// <summary>
     /// Message sending interface
     /// </summary>
-    public interface IMessageHandle
+    public interface IMessageHandle : IMessage
     {
 
         #region Methods
@@ -31,7 +31,15 @@
         /// Add a file to attachment list
         /// </summary>
         /// <param name="file">File to attach</param>
-        void Attachment(IFileAttachment file);
+        void AddAttachment(IFileAttachment file);
+
+
+        /// <summary>
+        /// Add header in message
+        /// </summary>
+        /// <param name="key">Header key name</param>
+        /// <param name="value">Header key value</param>
+        void AddHeader(string key, string value);
 
         #endregion
 

@@ -6,7 +6,7 @@ namespace RSoft.Mail.Business.Options
     /// <summary>
     /// Mail sender parameters options
     /// </summary>
-    public class MailSenderOptions
+    public class SenderOptions
     {
 
         /// <summary>
@@ -23,6 +23,12 @@ namespace RSoft.Mail.Business.Options
         /// Send grid parameters options
         /// </summary>
         public SendGridOptions SendGrid { get; set; }
+
+        /// <summary>
+        /// Recipient's e-mail to redirect (not working in production)
+        /// </summary>
+        public RedirectToOptions RedirectTo { get; set; }
+
     }
 
 }
