@@ -9,45 +9,54 @@ namespace RSoft.Mail.Business.Contracts
     public interface IMessage
     {
 
+        #region Properties
+
         /// <summary>
         /// A list of Message Headers
         /// </summary>
-        IDictionary<string, string> Headers { get; set; }
+        IReadOnlyDictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Get or set sender's e-mail
         /// </summary>
-        IEmailAddress From { get; set; }
+        IEmailAddress From { get; }
 
         /// <summary>
         /// Get or set recipient's e-mail
         /// </summary>
-        IEnumerable<IEmailAddress> To { get; set; }
+        IReadOnlyList<IEmailAddress> To { get; }
 
         /// <summary>
         /// CC e-mail recipient
         /// </summary>
-        IEnumerable<IEmailAddress> Cc { get; set; }
+        IReadOnlyList<IEmailAddress> Cc { get; }
 
         /// <summary>
         /// CCO e-mail recipient
         /// </summary>
-        IEnumerable<IEmailAddress> Cco { get; set; }
+        IReadOnlyList<IEmailAddress> Cco { get; }
 
         /// <summary>
-        /// Gets or sets the subject of your email.
+        /// Getsthe subject of your email.
         /// </summary>
-        string Subject { get; set; }
+        string Subject { get; }
 
         /// <summary>
         /// Message content
         /// </summary>
-        string Content { get; set; }
+        string Content { get; }
 
         /// <summary>
         /// List of files to be sent as an attachment
         /// </summary>
-        IEnumerable<IFileAttachment> Attachments { get; set; }
+        IReadOnlyList<IFileAttachment> Files { get; }
+
+        /// <summary>
+        /// Indicates whether the message will be sent in html format
+        /// </summary>
+        public bool EnableHtml { get; }
+
+        #endregion
 
     }
 }

@@ -8,24 +8,19 @@
     {
 
         /// <summary>
-        /// Gets or sets a unique id that you specify for the attachment
+        /// Gets the filename of the attachment.
         /// </summary>
-        string ContentId { get; set; }
+        string Filename { get; }
 
         /// <summary>
-        /// Gets or sets the filename of the attachment.
+        /// Gets the mime type of the content you are attaching. For example, application/pdf
         /// </summary>
-        string Filename { get; set; }
+        string Type { get; }
 
         /// <summary>
-        /// Gets or sets the mime type of the content you are attaching. For example, application/pdf
+        /// Gets the Base64 encoded content of the attachment.
         /// </summary>
-        string Type { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Base64 encoded content of the attachment.
-        /// </summary>
-        string Content { get; set; }
+        string Content { get; }
 
     }
 }

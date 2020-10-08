@@ -1,7 +1,5 @@
-﻿using Microsoft.Extensions.Options;
-using RSoft.Mail.Business.Contracts;
+﻿using RSoft.Mail.Business.Contracts;
 using RSoft.Mail.Business.Models;
-using RSoft.Mail.Business.Options;
 using RSoft.Mail.Business.Repositories;
 using System;
 using System.Threading;
@@ -19,8 +17,7 @@ namespace RSoft.Mail.Business.Services
         #region Local objects/variables
 
         private readonly IMailRepository _mailRepository;
-        private readonly IMailSender _mailSender;
-        private readonly MailSenderOptions _options;
+        private readonly ISender _sender;
 
         #endregion
 
@@ -30,12 +27,11 @@ namespace RSoft.Mail.Business.Services
         /// Create a new mail-service instance
         /// </summary>
         /// <param name="mailRepository">Mail repository object</param>
-        /// <param name="mailSender">Mail sender oject</param>
-        public MailService(IMailRepository mailRepository, IMailSender mailSender, IOptions<MailSenderOptions> options)
+        /// <param name="sender">Mail sender oject</param>
+        public MailService(IMailRepository mailRepository, ISender sender)
         {
             _mailRepository = mailRepository;
-            _mailSender = mailSender;
-            _options = options?.Value;
+            _sender = sender;
         }
 
         #endregion
@@ -47,23 +43,13 @@ namespace RSoft.Mail.Business.Services
         /// </summary>
         /// <param name="message">Message details</param>
         /// <param name="cancellationToken">A System.Threading.CancellationToken to observe while waiting for the task to complete</param>
-        public async Task<SendMailResult> SendMailAsync(IMessage message, CancellationToken cancellationToken = default)
+        public async Task<(SendMailResult, Guid)> SendMailAsync(IMessage message, CancellationToken cancellationToken = default)
         {
 
             Guid requestId = await _mailRepository.SaveRequestAsync(message, cancellationToken);
-            SendMailResult mailResult = null;
+            SendMailResult mailResult = await _sender.SendMailAsync(message, cancellationToken);
+            return (mailResult, requestId);
 
-            switch (_options.Type)
-            {
-                // await _mailSender.SendMailAsync(message, cancellationToken);
-                //TODO: ***** PAREI AQUI *****
-                case Enums.SenderType.Smtp:
-                    break;
-                case Enums.SenderType.SendGrid:
-                    break;
-                default:
-                    break;
-            }
         }
 
         #endregion

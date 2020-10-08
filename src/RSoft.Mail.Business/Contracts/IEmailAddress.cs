@@ -8,14 +8,14 @@
     {
 
         /// <summary>
-        /// E-mmail address of the sender or recipient
+        /// E-mail address of the sender or recipient
         /// </summary>
-        public string Email { get; set; }
+        public string Email { get; }
 
         /// <summary>
         /// Name of the sender or recipient
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; }
 
     }
 }
