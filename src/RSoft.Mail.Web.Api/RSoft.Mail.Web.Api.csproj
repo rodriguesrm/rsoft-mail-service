@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>678223c3-20e5-4816-be82-fb1a70632f1a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RSoft.Framework.Web" Version="1.0.0-rc1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RSoft.Mail.Business\RSoft.Mail.Business.csproj" />
+  </ItemGroup>
+
+
+</Project>

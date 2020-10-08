@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using RSoft.Mail.Business.Contracts;
 using RSoft.Mail.Business.Models;
 using RSoft.Mail.Business.Options;
@@ -37,7 +38,7 @@ namespace RSoft.Mail.Business.Services
         {
             _mailRepository = mailRepository;
             _sender = sender;
-            _isProduction = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")?.ToLower() == "production";
+            _isProduction = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Production;
             _redirectOptions = options?.Value;
         }
 
