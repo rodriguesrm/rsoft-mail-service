@@ -67,7 +67,7 @@ namespace RSoft.Mail.Business.Services
                         message.From,
                         message.To.ToList(),
                         message.Cc.ToList(),
-                        message.Cco.ToList(),
+                        message.Bco.ToList(),
                         message.Files.ToList(),
                         message.EnableHtml
                     );

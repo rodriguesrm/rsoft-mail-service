@@ -17,12 +17,12 @@ namespace RSoft.Mail.Business.Contracts
         IReadOnlyDictionary<string, string> Headers { get; }
 
         /// <summary>
-        /// Get or set sender's e-mail
+        /// Get sender's e-mail
         /// </summary>
         IEmailAddress From { get; }
 
         /// <summary>
-        /// Get or set recipient's e-mail
+        /// Get recipient's e-mail
         /// </summary>
         IReadOnlyList<IEmailAddress> To { get; }
 
@@ -32,9 +32,9 @@ namespace RSoft.Mail.Business.Contracts
         IReadOnlyList<IEmailAddress> Cc { get; }
 
         /// <summary>
-        /// CCO e-mail recipient
+        /// BCO e-mail recipient
         /// </summary>
-        IReadOnlyList<IEmailAddress> Cco { get; }
+        IReadOnlyList<IEmailAddress> Bco { get; }
 
         /// <summary>
         /// Getsthe subject of your email.

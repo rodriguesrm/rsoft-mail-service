@@ -1,15 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RSoft.Framework.Web.Extensions;
+using RSoft.Framework.Web.Filters;
 using RSoft.Logs.Extensions;
 using RSoft.Logs.Middleware;
 using RSoft.Mail.Business.IoC;
@@ -44,7 +48,7 @@ namespace RSoft.Mail.Web.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddControllers()
+                .AddControllers(opt => GlobalFilters.Configure(opt))
                 .AddJsonOptions(opt =>
                 {
                     opt.JsonSerializerOptions.IgnoreNullValues = true;
@@ -56,9 +60,8 @@ namespace RSoft.Mail.Web.Api
             services.AddCors();
             services.AddResponseCaching();
 
-            //var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-            //services.AddJwtToken(Configuration);
-            //services.AddSwaggerGenerator(Configuration, assemblyName);
+            services.AddJwtToken(Configuration);
+            services.AddSwaggerGenerator(Configuration, Assembly.GetExecutingAssembly().GetName().Name);
             services.AddMailServices(Configuration);
             services.AddMiddlewareLoggingOption(Configuration);
         }
@@ -68,7 +71,8 @@ namespace RSoft.Mail.Web.Api
         /// </summary>
         /// <param name="app">IApplicationBuilder object instance</param>
         /// <param name="env">IWebHostEnvironment object instance</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        /// /// <param name="provider">IApiVersionDescriptionProvider object instance</param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
 
             if (env.IsDevelopment())
@@ -87,12 +91,12 @@ namespace RSoft.Mail.Web.Api
             app.UseResponseCaching();
 
             app.UseMiddleware<RequestResponseLogging<Startup>>();
-            //app.UseSwaggerDocUI(provider);
+            app.UseSwaggerDocUI(provider);
 
             app.UseRouting();
 
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

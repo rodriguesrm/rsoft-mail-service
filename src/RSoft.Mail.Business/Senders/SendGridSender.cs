@@ -77,8 +77,8 @@ namespace RSoft.Mail.Business.Senders
             if (message.Cc.Count > 0)
                 msg.AddCcs(message.Cc.Select(s => new EmailAddress(s.Email, s.Name)).ToList());
 
-            if (message.Cco.Count > 0)
-                msg.AddCcs(message.Cco.Select(s => new EmailAddress(s.Email, s.Name)).ToList());
+            if (message.Bco.Count > 0)
+                msg.AddCcs(message.Bco.Select(s => new EmailAddress(s.Email, s.Name)).ToList());
 
             if (message.Files.Count > 0)
             {

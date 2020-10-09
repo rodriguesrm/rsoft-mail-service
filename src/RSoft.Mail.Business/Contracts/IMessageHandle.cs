@@ -22,10 +22,10 @@
         void AddCcRecipient(IEmailAddress recipient);
 
         /// <summary>
-        /// Add a cco recipient in list
+        /// Add a bcc recipient in list
         /// </summary>
         /// <param name="recipient">E-mail/Name object</param>
-        void AddCcoRecipient(IEmailAddress recipient);
+        void AddBcoRecipient(IEmailAddress recipient);
 
         /// <summary>
         /// Add a file to attachment list

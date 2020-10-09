@@ -16,7 +16,7 @@ namespace RSoft.Mail.Business.Models
         private readonly Dictionary<string, string> _headers;
         private readonly List<IEmailAddress> _to;
         private readonly List<IEmailAddress> _cc;
-        private readonly List<IEmailAddress> _cco;
+        private readonly List<IEmailAddress> _bcc;
         private readonly List<IFileAttachment> _files;
 
         #endregion
@@ -117,7 +117,7 @@ namespace RSoft.Mail.Business.Models
             From = from;
             _to = to.ToList();
             _cc = cc?.ToList() ?? new List<IEmailAddress>();
-            _cco = cco?.ToList() ?? new List<IEmailAddress>();
+            _bcc = cco?.ToList() ?? new List<IEmailAddress>();
             _files = files?.ToList() ?? new List<IFileAttachment>();
             EnableHtml = enableHtml;
             _headers = new Dictionary<string, string>();
@@ -140,7 +140,7 @@ namespace RSoft.Mail.Business.Models
         public IReadOnlyList<IEmailAddress> Cc => _cc.AsReadOnly();
 
         ///<inheritdoc/>
-        public IReadOnlyList<IEmailAddress> Cco => _cco.AsReadOnly();
+        public IReadOnlyList<IEmailAddress> Bco => _bcc.AsReadOnly();
 
         ///<inheritdoc/>
         public string Subject { get; private set; }
@@ -159,10 +159,10 @@ namespace RSoft.Mail.Business.Models
         #region Public methods
 
         ///<inheritdoc/>
-        public void AddCcoRecipient(IEmailAddress recipient)
+        public void AddBcoRecipient(IEmailAddress recipient)
         {
-            if (_cco.FirstOrDefault(x => x.Email == recipient.Email) == null)
-                _cco.Add(recipient);
+            if (_bcc.FirstOrDefault(x => x.Email == recipient.Email) == null)
+                _bcc.Add(recipient);
         }
 
         ///<inheritdoc/>
