@@ -19,7 +19,6 @@ namespace RSoft.Mail.Business.Models
         /// <param name="content">File content (base64 string)</param>
         public FileAttachment(string filename, string type, string content)
         {
-            //TODO: Add base64 validation
             Filename = filename;
             Type = type;
             Content = content;

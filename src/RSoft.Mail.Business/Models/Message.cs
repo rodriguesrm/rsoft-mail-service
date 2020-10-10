@@ -29,95 +29,21 @@ namespace RSoft.Mail.Business.Models
         /// <param name="subject">E-mail subject</param>
         /// <param name="content">E-mail content</param>
         /// <param name="from">Sender's e-mail</param>
+        /// <param name="replyTo">ReplyTo's e-mail</param>
         /// <param name="to">Recipient's e-mails</param>
         /// <param name="cc">Cc recipient's e-mails</param>
-        /// <param name="cco">Cco recipient's e-mails</param>
-        public Message(string subject, string content, IEmailAddress from, IList<IEmailAddress> to, IList<IEmailAddress> cc, IList<IEmailAddress> cco)
-            : this(subject, content, from, to, cc, cco, null, true)
-        { }
-
-        /// <summary>
-        /// Create a new message instance
-        /// </summary>
-        /// <param name="subject">E-mail subject</param>
-        /// <param name="content">E-mail content</param>
-        /// <param name="from">Sender's e-mail</param>
-        /// <param name="to">Recipient's e-mails</param>
-        /// <param name="cc">Cc recipient's e-mails</param>
-        /// <param name="cco">Cco recipient's e-mails</param>
-        /// <param name="files">Files to attach</param>
-        public Message(string subject, string content, IEmailAddress from, IList<IEmailAddress> to, IList<IEmailAddress> cc, IList<IEmailAddress> cco, IList<IFileAttachment> files)
-            : this(subject, content, from, to, cc, cco, files, true)
-        { }
-
-        /// <summary>
-        /// Create a new message instance
-        /// </summary>
-        /// <param name="subject">E-mail subject</param>
-        /// <param name="content">E-mail content</param>
-        /// <param name="from">Sender's e-mail</param>
-        /// <param name="to">Recipient's e-mails</param>
-        /// <param name="cc">Cc recipient's e-mails</param>
-        public Message(string subject, string content, IEmailAddress from, IList<IEmailAddress> to, IList<IEmailAddress> cc)
-            : this(subject, content, from, to, cc, null, null, true)
-        { }
-
-        /// <summary>
-        /// Create a new message instance
-        /// </summary>
-        /// <param name="subject">E-mail subject</param>
-        /// <param name="content">E-mail content</param>
-        /// <param name="from">Sender's e-mail</param>
-        /// <param name="to">Recipient's e-mails</param>
-        /// <param name="cc">Cc recipient's e-mails</param>
-        /// <param name="files">Files to attach</param>
-        public Message(string subject, string content, IEmailAddress from, IList<IEmailAddress> to, IList<IEmailAddress> cc, IList<IFileAttachment> files)
-            : this(subject, content, from, to, cc, null, files, true)
-        {}
-
-        /// <summary>
-        /// Create a new message instance
-        /// </summary>
-        /// <param name="subject">E-mail subject</param>
-        /// <param name="content">E-mail content</param>
-        /// <param name="from">Sender's e-mail</param>
-        /// <param name="to">Recipient's e-mails</param>
-        public Message(string subject, string content, IEmailAddress from, IList<IEmailAddress> to)
-            : this(subject, content, from, to, null, null, null, true)
-        { }
-
-
-        /// <summary>
-        /// Create a new message instance
-        /// </summary>
-        /// <param name="subject">E-mail subject</param>
-        /// <param name="content">E-mail content</param>
-        /// <param name="from">Sender's e-mail</param>
-        /// <param name="to">Recipient's e-mails</param>
-        /// <param name="files">Files to attach</param>
-        public Message(string subject, string content, IEmailAddress from, IList<IEmailAddress> to, IList<IFileAttachment> files)
-            : this(subject, content, from, to, null, null, files, true)
-        { }
-
-        /// <summary>
-        /// Create a new message instance
-        /// </summary>
-        /// <param name="subject">E-mail subject</param>
-        /// <param name="content">E-mail content</param>
-        /// <param name="from">Sender's e-mail</param>
-        /// <param name="to">Recipient's e-mails</param>
-        /// <param name="cc">Cc recipient's e-mails</param>
-        /// <param name="cco">Cco recipient's e-mails</param>
+        /// <param name="bcc">Bcc recipient's e-mails</param>
         /// <param name="files">Files to attach</param>
         /// <param name="enableHtml">Indicates whether the message will be sent in html format</param>
-        public Message(string subject, string content, IEmailAddress from, IList<IEmailAddress> to, IList<IEmailAddress> cc, IList<IEmailAddress> cco, IList<IFileAttachment> files, bool enableHtml)
+        public Message(string subject, string content, IEmailAddress from, IEmailAddress replyTo, IEnumerable<IEmailAddress> to, IEnumerable<IEmailAddress> cc, IEnumerable<IEmailAddress> bcc, IEnumerable<IFileAttachment> files, bool enableHtml)
         {
             Subject = subject;
             Content = content;
             From = from;
+            ReplyTo = replyTo;
             _to = to.ToList();
             _cc = cc?.ToList() ?? new List<IEmailAddress>();
-            _bcc = cco?.ToList() ?? new List<IEmailAddress>();
+            _bcc = bcc?.ToList() ?? new List<IEmailAddress>();
             _files = files?.ToList() ?? new List<IFileAttachment>();
             EnableHtml = enableHtml;
             _headers = new Dictionary<string, string>();
@@ -134,13 +60,16 @@ namespace RSoft.Mail.Business.Models
         public IEmailAddress From { get; private set; }
 
         ///<inheritdoc/>
+        public IEmailAddress ReplyTo { get; private set; }
+
+        ///<inheritdoc/>
         public IReadOnlyList<IEmailAddress> To => _to.AsReadOnly();
 
         ///<inheritdoc/>
         public IReadOnlyList<IEmailAddress> Cc => _cc.AsReadOnly();
 
         ///<inheritdoc/>
-        public IReadOnlyList<IEmailAddress> Bco => _bcc.AsReadOnly();
+        public IReadOnlyList<IEmailAddress> Bcc => _bcc.AsReadOnly();
 
         ///<inheritdoc/>
         public string Subject { get; private set; }
@@ -159,7 +88,7 @@ namespace RSoft.Mail.Business.Models
         #region Public methods
 
         ///<inheritdoc/>
-        public void AddBcoRecipient(IEmailAddress recipient)
+        public void AddBccRecipient(IEmailAddress recipient)
         {
             if (_bcc.FirstOrDefault(x => x.Email == recipient.Email) == null)
                 _bcc.Add(recipient);

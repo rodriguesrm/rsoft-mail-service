@@ -1,4 +1,4 @@
-﻿using RSoft.Mail.Business.Contracts;
+﻿using RSoft.Mail.Web.Api.Annotations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,13 +12,18 @@ namespace RSoft.Mail.Web.Api.Model.Request.v1_0
     {
 
         /// <summary>
-        /// Get or set sender's e-mail
+        /// Sender's e-mail
         /// </summary>
         [Required(ErrorMessage = "Sender is required")]
         public EmailRequest From { get; set; }
 
         /// <summary>
-        /// subject of your email.
+        /// Reply-to's e-mail
+        /// </summary>
+        public EmailRequest ReplyTo { get; set; }
+
+        /// <summary>
+        /// Subject of your email.
         /// </summary>
         [Required(ErrorMessage = "Subject is required")]
         public string Subject { get; set; }
@@ -32,7 +37,8 @@ namespace RSoft.Mail.Web.Api.Model.Request.v1_0
         /// <summary>
         /// List of recipient's e-mail
         /// </summary>
-        [Required(ErrorMessage = "At least one recipient must be informed")]
+        [Required(ErrorMessage = "To is required")]
+        [EnsureMinimumElements(1, ErrorMessage = "At least one recipient must be informed")]
         public IEnumerable<EmailRequest> To { get; set; }
 
         /// <summary>
@@ -44,7 +50,7 @@ namespace RSoft.Mail.Web.Api.Model.Request.v1_0
         /// <summary>
         /// List of bcc e-mail recipient
         /// </summary>
-        public IEnumerable<EmailRequest> Bco { get; set; }
+        public IEnumerable<EmailRequest> Bcc { get; set; }
 
         /// <summary>
         /// List of files to be sent as an attachment

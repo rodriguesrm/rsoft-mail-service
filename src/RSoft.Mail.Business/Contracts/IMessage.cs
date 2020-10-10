@@ -22,6 +22,11 @@ namespace RSoft.Mail.Business.Contracts
         IEmailAddress From { get; }
 
         /// <summary>
+        /// Get reply to e-mail
+        /// </summary>
+        IEmailAddress ReplyTo { get; }
+
+        /// <summary>
         /// Get recipient's e-mail
         /// </summary>
         IReadOnlyList<IEmailAddress> To { get; }
@@ -32,9 +37,9 @@ namespace RSoft.Mail.Business.Contracts
         IReadOnlyList<IEmailAddress> Cc { get; }
 
         /// <summary>
-        /// BCO e-mail recipient
+        /// BCC e-mail recipient
         /// </summary>
-        IReadOnlyList<IEmailAddress> Bco { get; }
+        IReadOnlyList<IEmailAddress> Bcc { get; }
 
         /// <summary>
         /// Getsthe subject of your email.

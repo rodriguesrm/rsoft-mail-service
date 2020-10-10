@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using RSoft.Mail.Business.Contracts;
 using RSoft.Mail.Business.Models;
@@ -34,7 +35,7 @@ namespace RSoft.Mail.Business.Services
         /// </summary>
         /// <param name="mailRepository">Mail repository object</param>
         /// <param name="sender">Mail sender oject</param>
-        public MailService(IMailRepository mailRepository, ISender sender, IOptions<RedirectToOptions> options)
+        public MailService(IMailRepository mailRepository, ISender sender, IOptions<RedirectToOptions> options, IConfiguration configuration)
         {
             _mailRepository = mailRepository;
             _sender = sender;
@@ -57,7 +58,7 @@ namespace RSoft.Mail.Business.Services
             Guid requestId = await _mailRepository.SaveRequestAsync(message);
 
             IMessageHandle msgToSend;
-            if (!_isProduction && redirectTo == null)
+            if (_isProduction)
             {
                 msgToSend =
                     new Message
@@ -65,21 +66,27 @@ namespace RSoft.Mail.Business.Services
                         message.Subject,
                         message.Content,
                         message.From,
+                        message.ReplyTo,
                         message.To.ToList(),
                         message.Cc.ToList(),
-                        message.Bco.ToList(),
+                        message.Bcc.ToList(),
                         message.Files.ToList(),
                         message.EnableHtml
                     );
             }
             else
             {
-                msgToSend =
+
+                if (string.IsNullOrWhiteSpace((redirectTo ?? _redirectOptions).Email))
+                    throw new ArgumentNullException("RedirectTo options parameters is not defined in application settings");
+
+                msgToSend = 
                     new Message
                     (
                         message.Subject,
                         message.Content,
                         message.From,
+                        message.ReplyTo,
                         new List<IEmailAddress>() { redirectTo ?? _redirectOptions },
                         null,
                         null,

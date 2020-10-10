@@ -12,15 +12,14 @@ namespace RSoft.Mail.Web.Api.Model.Request.v1_0
         /// <summary>
         /// E-mail address
         /// </summary>
-        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail address is invalid")]
-        //[Required(ErrorMessage = "E-mail address is required")]
-        public string Email { get; }
-        //BUG: ***** PAREI AQUI ***** => E-mail validation not working
+        [Required(ErrorMessage = "E-mail address is required")]
+        [EmailAddress(ErrorMessage = "E-mail address is invalid")]
+        public string Email { get; set; }
 
         /// <summary>
         /// Sender or recipient name
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
     }
 }

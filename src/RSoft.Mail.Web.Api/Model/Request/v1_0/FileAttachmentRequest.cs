@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RSoft.Mail.Web.Api.Annotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace RSoft.Mail.Web.Api.Model.Request.v1_0
 {
@@ -25,6 +26,7 @@ namespace RSoft.Mail.Web.Api.Model.Request.v1_0
         /// Gets the Base64 encoded content of the attachment.
         /// </summary>
         [Required(ErrorMessage = "File content is required")]
+        [Base64(ErrorMessage = "The file content is not a valid base64")]
         public string Content { get; set; }
 
     }

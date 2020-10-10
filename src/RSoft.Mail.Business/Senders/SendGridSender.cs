@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using RSoft.Mail.Business.Contracts;
 using RSoft.Mail.Business.Enums;
 using RSoft.Mail.Business.Models;
@@ -64,6 +65,9 @@ namespace RSoft.Mail.Business.Senders
                 Subject = message.Subject
             };
 
+            if (message.ReplyTo != null)
+                msg.ReplyTo = new EmailAddress(message.ReplyTo.Email, message.ReplyTo.Name);
+
             if (message.Headers.Count > 0)
                 msg.AddHeaders(message.Headers.ToDictionary(k => k.Key, v => v.Value));
 
@@ -77,21 +81,18 @@ namespace RSoft.Mail.Business.Senders
             if (message.Cc.Count > 0)
                 msg.AddCcs(message.Cc.Select(s => new EmailAddress(s.Email, s.Name)).ToList());
 
-            if (message.Bco.Count > 0)
-                msg.AddCcs(message.Bco.Select(s => new EmailAddress(s.Email, s.Name)).ToList());
+            if (message.Bcc.Count > 0)
+                msg.AddBccs(message.Bcc.Select(s => new EmailAddress(s.Email, s.Name)).ToList());
 
             if (message.Files.Count > 0)
             {
-                msg.Attachments.AddRange
-                (
-                    message.Files.Select(s => new Attachment()
-                    {
-                        Type = s.Type,
-                        Filename = s.Type,
-                        Content = s.Content,
-                        Disposition = "attachment"
-                    })
-                );
+                msg.Attachments = message.Files.Select(s => new Attachment()
+                {
+                    Filename = s.Filename,
+                    Type = s.Type,
+                    Content = s.Content,
+                    Disposition = "attachment"
+                }).ToList();
             }
 
             IDictionary<string, string> errors = new Dictionary<string, string>();

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
@@ -8,7 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using RSoft.Framework.Web.Api;
 using RSoft.Framework.Web.Model.Response;
 using RSoft.Logs.Model;
+using RSoft.Mail.Business.Models;
 using RSoft.Mail.Business.Services;
+using RSoft.Mail.Web.Api.Extensions;
 using RSoft.Mail.Web.Api.Model.Request.v1_0;
 
 namespace RSoft.Mail.Web.Api.Controllers.v1_0
@@ -50,14 +54,23 @@ namespace RSoft.Mail.Web.Api.Controllers.v1_0
         /// </summary>
         /// <param name="request">Request data</param>
         /// <param name="cancellationToken">A System.Threading.CancellationToken to observe while waiting for the task to complete</param>
-        private Task<IActionResult> RunSendAsync(SendRequest request, CancellationToken cancellationToken = default)
+        private async Task<IActionResult> RunSendAsync(SendRequest request, CancellationToken cancellationToken = default)
         {
-            //if (!ModelState.IsValid)
-            //    return BadRequest(ModelState.err)
 
-            //string redirect = HttpContext.Request.Query["redirect"];
-            //var _mailService
-            throw new NotImplementedException();
+            string queryRedirect = HttpContext.Request.Query["redirect"];
+            EmailAddress redirect = null;
+
+            if (!string.IsNullOrWhiteSpace(queryRedirect) && Regex.IsMatch(queryRedirect, @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"))
+                redirect = new EmailAddress(queryRedirect);
+
+            Message message = request.Map();
+
+            (SendMailResult, Guid) result = await _mailService.SendMail(message, redirect);
+            if (result.Item1.Success)
+                return Ok(result.Item2);
+            else
+                return BadRequest(PrepareNotifications(result.Item1.Errors.ToDictionary(k => k.Key, v => v.Key)));
+
         }
 
         #endregion

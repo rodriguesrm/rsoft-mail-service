@@ -12,12 +12,12 @@ namespace RSoft.Mail.Business.Options
         /// <summary>
         /// E-mail address of the recipient
         /// </summary>
-        public string Email { get; }
+        public string Email { get; set; }
 
         /// <summary>
         /// Name of the recipient
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
     }
 }

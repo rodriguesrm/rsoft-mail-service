@@ -25,7 +25,7 @@
         /// Add a bcc recipient in list
         /// </summary>
         /// <param name="recipient">E-mail/Name object</param>
-        void AddBcoRecipient(IEmailAddress recipient);
+        void AddBccRecipient(IEmailAddress recipient);
 
         /// <summary>
         /// Add a file to attachment list
