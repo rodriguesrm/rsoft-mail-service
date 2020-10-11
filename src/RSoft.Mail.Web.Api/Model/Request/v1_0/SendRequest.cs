@@ -1,4 +1,4 @@
-﻿using RSoft.Mail.Web.Api.Annotations;
+﻿using RSoft.Framework.Web.Annotations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

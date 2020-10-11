@@ -19,7 +19,7 @@ namespace RSoft.Mail.Business.Repositories
         {
             return Task.Run(() =>
             {
-                //BUG: NotImplementedException
+                //BACKLOG: NotImplementedException
                 Console.WriteLine("NotImplementedException");
                 return Guid.Empty;
 

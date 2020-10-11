@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="RSoft.Framework" Version="1.0.0-rc1.0" />
-    <PackageReference Include="RSoft.Framework.Web" Version="1.0.0-rc1.1" />
+    <PackageReference Include="RSoft.Framework.Web" Version="1.0.0-rc1.2" />
   </ItemGroup>
 
   <ItemGroup>

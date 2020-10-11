@@ -40,7 +40,7 @@ namespace RSoft.Mail.Business.IoC
             switch (options.Type)
             {
                 case SenderType.Smtp:
-                    //BUG: NotImplementedException
+                    //BACKLOG: NotImplementedException
                     throw new NotImplementedException();
                     break;
                 case SenderType.SendGrid:

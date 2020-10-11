@@ -1,4 +1,4 @@
-﻿using RSoft.Mail.Web.Api.Annotations;
+﻿using RSoft.Framework.Web.Annotations;
 using System.ComponentModel.DataAnnotations;
 
 namespace RSoft.Mail.Web.Api.Model.Request.v1_0
@@ -11,19 +11,19 @@ namespace RSoft.Mail.Web.Api.Model.Request.v1_0
     {
 
         /// <summary>
-        /// Gets the filename of the attachment.
+        /// Filename of the attachment.
         /// </summary>
         [Required(ErrorMessage = "Filename is required")]
         public string Filename { get; set; }
 
         /// <summary>
-        /// Gets the mime type of the content you are attaching. For example, application/pdf
+        /// Mime type of the content you are attaching. For example, application/pdf
         /// </summary>
         [Required(ErrorMessage = "Type is required")]
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets the Base64 encoded content of the attachment.
+        /// Base64 expression encoded content of the attachment.
         /// </summary>
         [Required(ErrorMessage = "File content is required")]
         [Base64(ErrorMessage = "The file content is not a valid base64")]
