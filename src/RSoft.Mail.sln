@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{A91E4020-6BD6-413B-B7B8-68161AB8CAA2}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Business", "RSoft.Mail.Business\RSoft.Mail.Business.csproj", "{5CE19306-F09A-4DCC-BB85-07BEA7005933}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Web.Api", "RSoft.Mail.Web.Api\RSoft.Mail.Web.Api.csproj", "{C477FD2B-8EFF-4893-BFA8-43D5629A6058}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CE19306-F09A-4DCC-BB85-07BEA7005933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CE19306-F09A-4DCC-BB85-07BEA7005933}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CE19306-F09A-4DCC-BB85-07BEA7005933}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CE19306-F09A-4DCC-BB85-07BEA7005933}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C477FD2B-8EFF-4893-BFA8-43D5629A6058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C477FD2B-8EFF-4893-BFA8-43D5629A6058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C477FD2B-8EFF-4893-BFA8-43D5629A6058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C477FD2B-8EFF-4893-BFA8-43D5629A6058}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A30539D6-1B36-4236-9F2C-DDBC73CB19C6}
+	EndGlobalSection
+EndGlobal
