@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  
+  br-labortaxes:
+    container_name: rsoft-mail
+    build: 
+      context: .
+      dockerfile: OpenBr.LaborTaxes.Web.Api/Dockerfile
+    ports: 
+      - "5030:80"
+    environment:  
+      - ConnectionStrings:MongoDb=mongodb://admin:admin@mongoBrLaborTaxes:27017/labortaxes?authSource=admin&readPreference=primary&ssl=false
+      - HealthChecksUI:HealthChecks:0:Uri=http://localhost/selfcheck
+    depends_on: 
+      - "RsoftMailService"
+    networks: 
+      - net-rsoft-mail
+
+networks: 
+  net-rsoft-mail:
+    driver: bridge

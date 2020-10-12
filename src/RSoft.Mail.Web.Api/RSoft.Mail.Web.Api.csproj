@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>678223c3-20e5-4816-be82-fb1a70632f1a</UserSecretsId>
     <Version>1.0.0-rc1.0</Version>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -17,8 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="RSoft.Framework" Version="1.0.0-rc1.0" />
-    <PackageReference Include="RSoft.Framework.Web" Version="1.0.0-rc1.2" />
+    <PackageReference Include="RSoft.Framework.Web" Version="1.0.0-rc1.3" />
   </ItemGroup>
 
   <ItemGroup>

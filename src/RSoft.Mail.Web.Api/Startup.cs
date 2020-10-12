@@ -1,17 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using RSoft.Framework.Web.Extensions;
 using RSoft.Framework.Web.Filters;
 using RSoft.Logs.Extensions;
@@ -64,6 +58,7 @@ namespace RSoft.Mail.Web.Api
             services.AddSwaggerGenerator(Configuration, Assembly.GetExecutingAssembly().GetName().Name);
             services.AddMailServices(Configuration);
             services.AddMiddlewareLoggingOption(Configuration);
+            services.AddHealthChecks();
         }
 
         /// <summary>
@@ -92,6 +87,7 @@ namespace RSoft.Mail.Web.Api
 
             app.UseMiddleware<RequestResponseLogging<Startup>>();
             app.UseSwaggerDocUI(provider);
+            app.UseApplicationHealthChecks();
 
             app.UseRouting();
 
