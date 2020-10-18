@@ -1,1 +1,2 @@
-# rsoft-mail-service
+# RSoft.Mail
+Email sending service API
