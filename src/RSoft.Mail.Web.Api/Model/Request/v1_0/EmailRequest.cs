@@ -12,8 +12,8 @@ namespace RSoft.Mail.Web.Api.Model.Request.v1_0
         /// <summary>
         /// E-mail address
         /// </summary>
-        [Required(ErrorMessage = "E-mail address is required")]
-        [EmailAddress(ErrorMessage = "E-mail address is invalid")]
+        [Required(ErrorMessage = "EMAIL_REQUIRED")]
+        [EmailAddress(ErrorMessage = "EMAIL_INVALID")]
         public string Email { get; set; }
 
         /// <summary>

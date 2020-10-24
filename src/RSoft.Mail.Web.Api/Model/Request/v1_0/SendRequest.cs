@@ -14,7 +14,7 @@ namespace RSoft.Mail.Web.Api.Model.Request.v1_0
         /// <summary>
         /// Sender's e-mail
         /// </summary>
-        [Required(ErrorMessage = "Sender is required")]
+        [Required(ErrorMessage = "EMAIL_SENDER_REQUIRED")]
         public EmailRequest From { get; set; }
 
         /// <summary>
@@ -25,20 +25,20 @@ namespace RSoft.Mail.Web.Api.Model.Request.v1_0
         /// <summary>
         /// Subject of your email.
         /// </summary>
-        [Required(ErrorMessage = "Subject is required")]
+        [Required(ErrorMessage = "EMAIL_SUBJECT_REQUIRED")]
         public string Subject { get; set; }
 
         /// <summary>
         /// Message content
         /// </summary>
-        [Required(ErrorMessage = "E-mail content is required")]
+        [Required(ErrorMessage = "EMAIL_CONTENT_REQUIRED")]
         public string Content { get; set; }
 
         /// <summary>
         /// List of recipient's e-mail
         /// </summary>
-        [Required(ErrorMessage = "To is required")]
-        [EnsureMinimumElements(1, ErrorMessage = "At least one recipient must be informed")]
+        [Required(ErrorMessage = "EMAIL_RECIPIENT_REQUIRED")]
+        [EnsureMinimumElements(1, ErrorMessage = "EMAIL_MINIMUM_RECIPIENT")]
         public IEnumerable<EmailRequest> To { get; set; }
 
         /// <summary>

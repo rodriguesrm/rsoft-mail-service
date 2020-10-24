@@ -11,6 +11,7 @@ using RSoft.Framework.Web.Filters;
 using RSoft.Logs.Extensions;
 using RSoft.Logs.Middleware;
 using RSoft.Mail.Business.IoC;
+using RSoft.Mail.Web.Api.Language;
 
 namespace RSoft.Mail.Web.Api
 {
@@ -43,6 +44,13 @@ namespace RSoft.Mail.Web.Api
         {
             services
                 .AddControllers(opt => GlobalFilters.Configure(opt))
+                .AddDataAnnotationsLocalization(options =>
+                {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                    {
+                        return factory.Create(typeof(Resource));
+                    };
+                })
                 .AddJsonOptions(opt =>
                 {
                     opt.JsonSerializerOptions.IgnoreNullValues = true;
@@ -58,6 +66,7 @@ namespace RSoft.Mail.Web.Api
             services.AddSwaggerGenerator(Configuration, Assembly.GetExecutingAssembly().GetName().Name);
             services.AddMailServices(Configuration);
             services.AddMiddlewareLoggingOption(Configuration);
+            services.AddCultureLanguage(Configuration);
             services.AddHealthChecks();
         }
 
@@ -87,6 +96,7 @@ namespace RSoft.Mail.Web.Api
 
             app.UseMiddleware<RequestResponseLogging<Startup>>();
             app.UseSwaggerDocUI(provider);
+            app.ConfigureLangague();
             app.UseApplicationHealthChecks();
 
             app.UseRouting();

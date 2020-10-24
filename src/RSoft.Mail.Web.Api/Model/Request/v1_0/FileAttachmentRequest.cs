@@ -13,20 +13,20 @@ namespace RSoft.Mail.Web.Api.Model.Request.v1_0
         /// <summary>
         /// Filename of the attachment.
         /// </summary>
-        [Required(ErrorMessage = "Filename is required")]
+        [Required(ErrorMessage = "FILENAME_REQUIRED")]
         public string Filename { get; set; }
 
         /// <summary>
         /// Mime type of the content you are attaching. For example, application/pdf
         /// </summary>
-        [Required(ErrorMessage = "Type is required")]
+        [Required(ErrorMessage = "TYPE_REQUIRED")]
         public string Type { get; set; }
 
         /// <summary>
         /// Base64 expression encoded content of the attachment.
         /// </summary>
-        [Required(ErrorMessage = "File content is required")]
-        [Base64(ErrorMessage = "The file content is not a valid base64")]
+        [Required(ErrorMessage = "FILE_CONTENT_REQUIRED")]
+        [Base64(ErrorMessage = "FILE_CONTENT_INVALID_BASE64")]
         public string Content { get; set; }
 
     }

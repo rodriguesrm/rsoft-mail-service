@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RSoft.Framework.Options;
 using RSoft.Mail.Business.Contracts;
 using RSoft.Mail.Business.Enums;
 using RSoft.Mail.Business.Options;
@@ -30,7 +31,8 @@ namespace RSoft.Mail.Business.IoC
             services.Configure<SendGridOptions>(options => configuration.GetSection("Sender:SendGrid").Bind(options));
             services.Configure<RedirectToOptions>(options => configuration.GetSection("Sender:RedirectTo").Bind(options));
             services.Configure<SenderOptions>(options => configuration.GetSection("Sender").Bind(options));
-            
+            services.Configure<CultureOptions>(options => configuration.GetSection("Application:Culture").Bind(options));
+
             services.AddScoped<IMailRepository, MailRepository>();
             services.AddScoped<IMailService, MailService>();
 
