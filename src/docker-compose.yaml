@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  
+  rsoft-mail:
+    container_name: RSoftMailService
+    build: 
+      context: .
+      dockerfile: RSoft.Mail.Web.Api/Dockerfile
+    ports: 
+      - "5030:80"
+    environment:  
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks: 
+      - net-rsoft-mail
+
+networks: 
+  net-rsoft-mail:
+    driver: bridge
