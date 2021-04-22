@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using RSoft.Logs.Extensions;
 using RSoft.Mail.Business.Contracts;
 using RSoft.Mail.Business.Enums;
 using RSoft.Mail.Business.Models;
@@ -28,6 +30,7 @@ namespace RSoft.Mail.Business.Senders
 
         private readonly SendGridOptions _options;
         private readonly ISendGridClient _client;
+        private readonly ILogger<SendGridSender> _logger;
 
         #endregion
 
@@ -38,10 +41,12 @@ namespace RSoft.Mail.Business.Senders
         /// </summary>
         /// <param name="client">Sendgrid client object</param>
         /// <param name="options">Sendgrid options parameters object</param>
-        public SendGridSender(ISendGridClient client, IOptions<SendGridOptions> options)
+        /// <param name="logger">Logger service</param>
+        public SendGridSender(ISendGridClient client, IOptions<SendGridOptions> options, ILogger<SendGridSender> logger)
         {
             _client = client;
             _options = options?.Value;
+            _logger = logger;
         }
 
         #endregion
@@ -102,6 +107,7 @@ namespace RSoft.Mail.Business.Senders
             {
                 string errorMessage = string.Empty;
                 string body = await response.Body.ReadAsStringAsync();
+                _logger.LogWarning("Fail to send e-mail in SendGrid Service, Response Status Code: {SendGridStatusCode}, Response Body: {SendGridStatusResponseBody}", response.StatusCode, body.AsJson());
                 if (!string.IsNullOrWhiteSpace(body))
                 {
                     SendGridError sendGridResult = JsonSerializer.Deserialize<SendGridError>(body, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
