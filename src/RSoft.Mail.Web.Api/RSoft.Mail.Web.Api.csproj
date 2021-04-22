@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>678223c3-20e5-4816-be82-fb1a70632f1a</UserSecretsId>
-    <Version>1.0.0</Version>
+    <Version>1.0.2</Version>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
@@ -19,8 +19,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
-    <PackageReference Include="RSoft.Framework" Version="1.0.0-rc1.9" />
-    <PackageReference Include="RSoft.Framework.Web" Version="1.0.0-rc1.3" />
+    <PackageReference Include="RSoft.Framework" Version="1.0.0-rc1.12" />
+    <PackageReference Include="RSoft.Framework.Web" Version="1.0.0-rc1.5" />
   </ItemGroup>
 
   <ItemGroup>
