@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Business", "RSof
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Web.Api", "RSoft.Mail.Web.Api\RSoft.Mail.Web.Api.csproj", "{C477FD2B-8EFF-4893-BFA8-43D5629A6058}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Web.Grpc", "RSoft.Mail.Web.Grpc\RSoft.Mail.Web.Grpc.csproj", "{7232FEC8-EA5B-4909-BF94-32138688E49E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C477FD2B-8EFF-4893-BFA8-43D5629A6058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C477FD2B-8EFF-4893-BFA8-43D5629A6058}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C477FD2B-8EFF-4893-BFA8-43D5629A6058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7232FEC8-EA5B-4909-BF94-32138688E49E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7232FEC8-EA5B-4909-BF94-32138688E49E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7232FEC8-EA5B-4909-BF94-32138688E49E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7232FEC8-EA5B-4909-BF94-32138688E49E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
