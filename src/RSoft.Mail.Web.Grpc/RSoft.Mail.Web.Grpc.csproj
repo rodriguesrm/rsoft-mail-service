@@ -13,8 +13,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Protobuf Include="Protos\*.proto" GrpcServices="Server" />
 		<Folder Include="Contracts\" />
+		<Folder Include="Protos\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\RSoft.Mail.Business\RSoft.Mail.Business.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Protobuf Include="..\Protos\mailsender.proto">
+	    <Link>Protos\mailsender.proto</Link>
+	  </Protobuf>
 	</ItemGroup>
 
 </Project>

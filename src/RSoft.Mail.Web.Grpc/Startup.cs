@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RSoft.Mail.Business.IoC;
 using RSoft.Mail.Web.Grpc.Extensions;
 
 namespace RSoft.Mail.Web.Grpc
@@ -39,7 +40,7 @@ namespace RSoft.Mail.Web.Grpc
 
             //TODO: Check and implement
             //services.AddJwtToken(Configuration);
-            //services.AddMailServices(Configuration);
+            services.AddMailServices(Configuration);
         }
 
         /// <summary>
