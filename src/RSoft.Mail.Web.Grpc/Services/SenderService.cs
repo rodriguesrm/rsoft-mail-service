@@ -39,7 +39,7 @@ namespace RSoft.Mail.Web.Grpc.Services
         /// </summary>
         /// <param name="request">Request data</param>
         /// <param name="context">Server call context</param>
-        public override async Task<SendReply> Send(SendRequest request, ServerCallContext context)
+        public override async Task<MailSendReply> Send(MailSendRequest request, ServerCallContext context)
         {
 
             _logger.LogInformation("gRPC SendMail - START", request);
@@ -52,7 +52,7 @@ namespace RSoft.Mail.Web.Grpc.Services
             Message message = request.Map();
             (SendMailResult result, Guid mailId) = await _mailService.SendMail(message, redirect);
 
-            string errors = null;
+            string errors = string.Empty;
             if (result.Success)
             {
                 _logger.LogInformation
@@ -74,7 +74,7 @@ namespace RSoft.Mail.Web.Grpc.Services
 
             _logger.LogInformation("gRPC SendMail - END");
 
-            return new SendReply()
+            return new MailSendReply()
             {
                 Success = result.Success,
                 MailId = mailId.ToString(),

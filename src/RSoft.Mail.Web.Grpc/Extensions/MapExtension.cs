@@ -17,7 +17,7 @@ namespace RSoft.Mail.Web.Grpc.Extensions
         /// Map send-request to message
         /// </summary>
         /// <param name="request">Send request object</param>
-        public static Message Map(this SendRequest request)
+        public static Message Map(this MailSendRequest request)
         {
 
             EmailAddress from = request.From.Map();
@@ -48,7 +48,7 @@ namespace RSoft.Mail.Web.Grpc.Extensions
         /// Map Types.Mail to EmailAddress
         /// </summary>
         /// <param name="source">Source object</param>
-        public static EmailAddress Map(this SendRequest.Types.Email source)
+        public static EmailAddress Map(this MailSendRequest.Types.Email source)
         {
             if (source == null)
                 return null;
@@ -61,21 +61,21 @@ namespace RSoft.Mail.Web.Grpc.Extensions
         /// Map Types.Mail list to EmailAddress list
         /// </summary>
         /// <param name="source">Source list</param>
-        public static IEnumerable<EmailAddress> Map(this RepeatedField<SendRequest.Types.Email> source)
+        public static IEnumerable<EmailAddress> Map(this RepeatedField<MailSendRequest.Types.Email> source)
             => source.Select(item => item.Map()).ToList();
 
         /// <summary>
         /// Map Types.FileAttachment to FileAttachment dto
         /// </summary>
         /// <param name="source">Source object</param>
-        public static FileAttachment Map(this SendRequest.Types.FileAttachment source)
+        public static FileAttachment Map(this MailSendRequest.Types.FileAttachment source)
             => new FileAttachment(source.Filename, source.Type, source.Content);
 
         /// <summary>
         /// map Types.FileAttachment list to FileAttachment dto list
         /// </summary>
         /// <param name="source">Source list</param>
-        public static IEnumerable<FileAttachment> Map(this RepeatedField<SendRequest.Types.FileAttachment> source)
+        public static IEnumerable<FileAttachment> Map(this RepeatedField<MailSendRequest.Types.FileAttachment> source)
             => source.Select(item => item.Map()).ToList();
 
     }
