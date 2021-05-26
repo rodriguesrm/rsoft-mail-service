@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RSoft.Framework.Web.Extensions;
 using RSoft.Mail.Business.IoC;
 using RSoft.Mail.Web.Grpc.Extensions;
 
@@ -39,8 +40,9 @@ namespace RSoft.Mail.Web.Grpc
             services.AddGrpc();
 
             //TODO: Check and implement
-            //services.AddJwtToken(Configuration);
+            services.AddJwtToken(Configuration);
             services.AddMailServices(Configuration);
+            services.AddHealthChecks();
         }
 
         /// <summary>
@@ -55,7 +57,13 @@ namespace RSoft.Mail.Web.Grpc
                 app.UseDeveloperExceptionPage();
             }
 
+            app.ConfigureLangague();
+            app.UseApplicationHealthChecks();
+
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

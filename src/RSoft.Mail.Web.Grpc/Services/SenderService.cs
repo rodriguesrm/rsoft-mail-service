@@ -1,4 +1,5 @@
 ﻿using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using RSoft.Mail.Business.Models;
 using RSoft.Mail.Business.Services;
@@ -31,7 +32,6 @@ namespace RSoft.Mail.Web.Grpc.Services
 
         #endregion
 
-
         #region Overrides
 
         /// <summary>
@@ -39,6 +39,7 @@ namespace RSoft.Mail.Web.Grpc.Services
         /// </summary>
         /// <param name="request">Request data</param>
         /// <param name="context">Server call context</param>
+        [Authorize]
         public override async Task<MailSendReply> Send(MailSendRequest request, ServerCallContext context)
         {
 
@@ -66,7 +67,7 @@ namespace RSoft.Mail.Web.Grpc.Services
                 errors = string.Join("|", result.Errors.Select(item => $"{item.Key}=>{item.Value}").ToList());
                 _logger.LogInformation
                 (
-                    "gRPC SendMail - Failt to send e-mail to {recipient}, Error: {error}",
+                    "gRPC SendMail - Fail to send e-mail to {recipient}, Error: {error}",
                     redirect?.Email ?? string.Join(",", request.To.Select(item => item.Address).ToList()),
                     errors
                 );
