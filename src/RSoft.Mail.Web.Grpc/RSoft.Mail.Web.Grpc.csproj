@@ -19,8 +19,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\Protos\">
-			<Link>Photos</Link>
+		<None Include="..\Protos">
+			<Link>Protos</Link>
 		</None>
 	  <Protobuf Include="..\Protos\mailsender.proto">
 	    <Link>Protos\mailsender.proto</Link>
