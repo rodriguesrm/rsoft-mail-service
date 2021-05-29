@@ -6,6 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\RSoft.Mail.Business\RSoft.Mail.Business.csproj" />
 	  <ProjectReference Include="..\RSoft.Mail.Web.Grpc.Client\RSoft.Mail.Web.Grpc.Client.csproj" />
 	</ItemGroup>
 

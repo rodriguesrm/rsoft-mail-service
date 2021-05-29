@@ -23,10 +23,14 @@ namespace RSoft.Mail.Web.Grpc.Client
 
         #region Constructors
 
+#if DEBUG
+
         /// <summary>
         /// Create a new GrpcMailServiceProvider instance
         /// </summary>
         public GrpcMailServiceProvider() : this(null) { }
+
+#endif
 
         /// <summary>
         /// Create a new GrpcMailServiceProvider instance
@@ -34,7 +38,7 @@ namespace RSoft.Mail.Web.Grpc.Client
         /// <param name="loggerFactory">Loger factory</param>
         public GrpcMailServiceProvider(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<GrpcMailServiceProvider>();
+            _logger = loggerFactory?.CreateLogger<GrpcMailServiceProvider>();
         }
 
         #endregion

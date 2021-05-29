@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0_Docs", "0_Docs", "{A91E4020-6BD6-413B-B7B8-68161AB8CAA2}"
 	ProjectSection(SolutionItems) = preProject
+		..\docs\license.txt = ..\docs\license.txt
 		..\README.md = ..\README.md
+		..\docs\release-notes-mail-grpc-client.md = ..\docs\release-notes-mail-grpc-client.md
 		..\docs\release-notes.md = ..\docs\release-notes.md
 	EndProjectSection
 EndProject
