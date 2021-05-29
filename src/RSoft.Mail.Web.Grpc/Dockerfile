@@ -7,17 +7,18 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["RSoft.Mail.Web.Grpc/RSoft.Mail.Web.Grpc.csproj", "RSoft.Mail.Web.Grpc/"]
+COPY ["RSoft.Mail.Web.Grpc/RSoft.Mail.Web.Grpc.Host.csproj", "RSoft.Mail.Web.Grpc/"]
 COPY ["RSoft.Mail.Business/RSoft.Mail.Business.csproj", "RSoft.Mail.Business/"]
-RUN dotnet restore "RSoft.Mail.Web.Grpc/RSoft.Mail.Web.Grpc.csproj"
+COPY ["RSoft.Mail.Contract/RSoft.Mail.Contract.csproj", "RSoft.Mail.Contract/"]
+RUN dotnet restore "RSoft.Mail.Web.Grpc/RSoft.Mail.Web.Grpc.Host.csproj"
 COPY . .
 WORKDIR "/src/RSoft.Mail.Web.Grpc"
-RUN dotnet build "RSoft.Mail.Web.Grpc.csproj" -c Release -o /app/build
+RUN dotnet build "RSoft.Mail.Web.Grpc.Host.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "RSoft.Mail.Web.Grpc.csproj" -c Release -o /app/publish
+RUN dotnet publish "RSoft.Mail.Web.Grpc.Host.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "RSoft.Mail.Web.Grpc.dll"]
+ENTRYPOINT ["dotnet", "RSoft.Mail.Web.Grpc.Host.dll"]
