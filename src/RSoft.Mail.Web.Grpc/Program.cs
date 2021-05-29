@@ -2,8 +2,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RSoft.Logs.Extensions;
+using MsHost = Microsoft.Extensions.Hosting.Host;
 
-namespace RSoft.Mail.Web.Grpc
+namespace RSoft.Mail.Web.Grpc.Host
 {
 
     /// <summary>
@@ -26,7 +27,7 @@ namespace RSoft.Mail.Web.Grpc
         /// </summary>
         /// <param name="args">Arguments array</param>
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+            MsHost.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();

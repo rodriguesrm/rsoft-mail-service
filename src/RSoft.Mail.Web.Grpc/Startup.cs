@@ -6,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RSoft.Framework.Web.Extensions;
 using RSoft.Mail.Business.IoC;
-using RSoft.Mail.Web.Grpc.Extensions;
+using RSoft.Mail.Web.Grpc.Host.Extensions;
 
-namespace RSoft.Mail.Web.Grpc
+namespace RSoft.Mail.Web.Grpc.Host
 {
 
     /// <summary>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RSoft.Mail.Business.Contracts
+namespace RSoft.Mail.Contract
 {
 
     /// <summary>

@@ -1,5 +1,5 @@
-﻿using RSoft.Mail.Business.Contracts;
-using RSoft.Mail.Business.Models;
+﻿using RSoft.Mail.Business.Models;
+using RSoft.Mail.Contract;
 using System;
 using System.Threading.Tasks;
 

@@ -4,7 +4,7 @@ using RSoft.Mail.Web.Grpc.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RSoft.Mail.Web.Grpc.Extensions
+namespace RSoft.Mail.Web.Grpc.Host.Extensions
 {
 
     /// <summary>

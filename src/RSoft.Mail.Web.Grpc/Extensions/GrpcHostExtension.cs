@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
-using RSoft.Mail.Web.Grpc.Services;
 
-namespace RSoft.Mail.Web.Grpc.Extensions
+namespace RSoft.Mail.Web.Grpc.Host.Extensions
 {
 
     /// <summary>

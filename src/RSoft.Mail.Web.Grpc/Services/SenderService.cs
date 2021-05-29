@@ -4,13 +4,13 @@ using Microsoft.Extensions.Logging;
 using RSoft.Mail.Business.Models;
 using RSoft.Mail.Business.Services;
 using RSoft.Mail.Web.Grpc.Contracts;
-using RSoft.Mail.Web.Grpc.Extensions;
+using RSoft.Mail.Web.Grpc.Host.Extensions;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace RSoft.Mail.Web.Grpc.Services
+namespace RSoft.Mail.Web.Grpc.Host
 {
     public class SenderService : MailSender.MailSenderBase
     {

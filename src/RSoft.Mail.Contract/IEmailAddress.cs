@@ -1,4 +1,4 @@
-﻿namespace RSoft.Mail.Business.Contracts
+﻿namespace RSoft.Mail.Contract
 {
 
     /// <summary>

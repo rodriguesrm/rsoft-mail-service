@@ -1,4 +1,4 @@
-﻿using RSoft.Mail.Business.Contracts;
+﻿using RSoft.Mail.Contract;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

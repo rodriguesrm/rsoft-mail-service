@@ -1,5 +1,6 @@
 ﻿using RSoft.Mail.Business.Enums;
 using RSoft.Mail.Business.Models;
+using RSoft.Mail.Contract;
 using System.Threading;
 using System.Threading.Tasks;
 
