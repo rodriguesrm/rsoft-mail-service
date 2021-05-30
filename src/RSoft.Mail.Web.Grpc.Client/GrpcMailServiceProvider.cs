@@ -5,6 +5,8 @@ using System;
 using System.Threading.Tasks;
 using RSoft.Mail.Web.Grpc.Contracts;
 using IRSoftMessage = RSoft.Mail.Contract.IMessage;
+using System.Net.Http;
+using Microsoft.Extensions.Hosting;
 
 namespace RSoft.Mail.Web.Grpc.Client
 {
@@ -17,7 +19,8 @@ namespace RSoft.Mail.Web.Grpc.Client
 
         #region Local Variables/Objects
 
-        private ILogger<GrpcMailServiceProvider> _logger = null;
+        private readonly ILogger<GrpcMailServiceProvider> _logger;
+        private readonly bool _isProduction;
 
         #endregion
 
@@ -39,6 +42,7 @@ namespace RSoft.Mail.Web.Grpc.Client
         public GrpcMailServiceProvider(ILoggerFactory loggerFactory)
         {
             _logger = loggerFactory?.CreateLogger<GrpcMailServiceProvider>();
+            _isProduction = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Production;
         }
 
         #endregion
@@ -62,12 +66,30 @@ namespace RSoft.Mail.Web.Grpc.Client
                 return Task.CompletedTask;
             });
 
-            // SslCredentials is used here because this channel is using TLS.
-            // Channels that aren't using TLS should use ChannelCredentials.Insecure instead.
-            GrpcChannel channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
+
+            GrpcChannel channel;
+            if (_isProduction)
             {
-                Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
-            });
+                // SslCredentials is used here because this channel is using TLS.
+                // Channels that aren't using TLS should use ChannelCredentials.Insecure instead.
+                channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
+                {
+                    Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
+                });
+            }
+            else
+            {
+                // Return `true` to allow certificates that are untrusted/invalid
+                HttpClientHandler httpClientHandler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+                };
+                channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
+                {
+                    HttpClient = new HttpClient(httpClientHandler),
+                    Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
+                });
+            }
             return channel;
         }
 

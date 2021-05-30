@@ -16,8 +16,6 @@ WORKDIR "/src/RSoft.Mail.Web.Grpc"
 RUN dotnet build "RSoft.Mail.Web.Grpc.Host.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet dev-certs https --clean
-RUN dotnet dev-certs https --verbose
 RUN dotnet publish "RSoft.Mail.Web.Grpc.Host.csproj" -c Release -o /app/publish
 
 FROM base AS final
