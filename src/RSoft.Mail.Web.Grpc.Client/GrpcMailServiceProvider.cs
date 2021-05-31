@@ -70,8 +70,6 @@ namespace RSoft.Mail.Web.Grpc.Client
             GrpcChannel channel;
             if (_isProduction)
             {
-                // SslCredentials is used here because this channel is using TLS.
-                // Channels that aren't using TLS should use ChannelCredentials.Insecure instead.
                 channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
                 {
                     Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
@@ -79,14 +77,12 @@ namespace RSoft.Mail.Web.Grpc.Client
             }
             else
             {
-                // Return `true` to allow certificates that are untrusted/invalid
-                HttpClientHandler httpClientHandler = new HttpClientHandler
-                {
-                    ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
-                };
                 channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
                 {
-                    HttpClient = new HttpClient(httpClientHandler),
+                    HttpClient = new HttpClient(new HttpClientHandler
+                    {
+                        ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+                    }),
                     Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
                 });
             }

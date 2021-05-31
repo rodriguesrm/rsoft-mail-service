@@ -6,13 +6,19 @@ using RSoft.Mail.Web.Grpc.Client;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace RSoft.Mail.Web.Grpc.ConsoleTest
 {
     
     public class Program
     {
-        public static Task Main(string[] args)
+        public static void Main(string[] args)
+        {
+            RunTest();
+        }
+
+        private static void RunTest()
         {
 
             //Console.WriteLine("Press any key to start test");
@@ -40,7 +46,6 @@ namespace RSoft.Mail.Web.Grpc.ConsoleTest
 
             Console.ReadKey();
 
-            return Task.CompletedTask;
         }
     }
 }
