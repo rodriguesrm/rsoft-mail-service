@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<UserSecretsId>007e455d-5116-45cc-a82c-8175c90a3c92</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.37.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
+		<PackageReference Include="RSoft.Logs" Version="1.1.0-rc1.6" />
+		<PackageReference Include="RSoft.Framework" Version="1.0.0-rc1.12" />
+		<PackageReference Include="RSoft.Framework.Web" Version="1.0.0-rc1.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\RSoft.Mail.Business\RSoft.Mail.Business.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\Protos">
+			<Link>Protos</Link>
+		</None>
+	  <Protobuf Include="..\Protos\mailsender.proto">
+	    <Link>Protos\mailsender.proto</Link>
+	  </Protobuf>
+	</ItemGroup>
+
+</Project>

@@ -1,4 +1,5 @@
 ﻿using RSoft.Mail.Business.Contracts;
+using RSoft.Mail.Contract;
 using System.Collections.Generic;
 using System.Linq;
 

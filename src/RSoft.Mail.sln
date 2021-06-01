@@ -3,15 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{A91E4020-6BD6-413B-B7B8-68161AB8CAA2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0_Docs", "0_Docs", "{A91E4020-6BD6-413B-B7B8-68161AB8CAA2}"
 	ProjectSection(SolutionItems) = preProject
+		..\docs\license.txt = ..\docs\license.txt
 		..\README.md = ..\README.md
+		..\docs\release-notes-mail-grpc-client.md = ..\docs\release-notes-mail-grpc-client.md
 		..\docs\release-notes.md = ..\docs\release-notes.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Business", "RSoft.Mail.Business\RSoft.Mail.Business.csproj", "{5CE19306-F09A-4DCC-BB85-07BEA7005933}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Web.Api", "RSoft.Mail.Web.Api\RSoft.Mail.Web.Api.csproj", "{C477FD2B-8EFF-4893-BFA8-43D5629A6058}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Web.Grpc.Host", "RSoft.Mail.Web.Grpc\RSoft.Mail.Web.Grpc.Host.csproj", "{A7B71AC8-C571-4FCB-A865-A8595752D191}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Web.Grpc.ConsoleTest", "RSoft.Mail.Web.Grpc.ConsoleTest\RSoft.Mail.Web.Grpc.ConsoleTest.csproj", "{EB6CE78E-A5B7-4B7F-9E68-E9CA1566FC09}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Web.Grpc.Client", "RSoft.Mail.Web.Grpc.Client\RSoft.Mail.Web.Grpc.Client.csproj", "{039A6D91-6C86-416A-ADD8-EE4E849CFB15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Mail.Contract", "RSoft.Mail.Contract\RSoft.Mail.Contract.csproj", "{95C2508B-8AFB-44F7-9196-4A238FA3A696}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_gRpc", "3_gRpc", "{BA81EFA5-2412-4508-804E-C4F809D78D2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Core", "1_Core", "{1E8144B4-E356-46B4-B46F-6B51A9081FC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_Rest", "2_Rest", "{40763926-5B49-4D86-999F-CE63816D7247}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +43,33 @@ Global
 		{C477FD2B-8EFF-4893-BFA8-43D5629A6058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C477FD2B-8EFF-4893-BFA8-43D5629A6058}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C477FD2B-8EFF-4893-BFA8-43D5629A6058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B71AC8-C571-4FCB-A865-A8595752D191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B71AC8-C571-4FCB-A865-A8595752D191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B71AC8-C571-4FCB-A865-A8595752D191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B71AC8-C571-4FCB-A865-A8595752D191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB6CE78E-A5B7-4B7F-9E68-E9CA1566FC09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB6CE78E-A5B7-4B7F-9E68-E9CA1566FC09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB6CE78E-A5B7-4B7F-9E68-E9CA1566FC09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB6CE78E-A5B7-4B7F-9E68-E9CA1566FC09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{039A6D91-6C86-416A-ADD8-EE4E849CFB15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{039A6D91-6C86-416A-ADD8-EE4E849CFB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{039A6D91-6C86-416A-ADD8-EE4E849CFB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{039A6D91-6C86-416A-ADD8-EE4E849CFB15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95C2508B-8AFB-44F7-9196-4A238FA3A696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C2508B-8AFB-44F7-9196-4A238FA3A696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C2508B-8AFB-44F7-9196-4A238FA3A696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C2508B-8AFB-44F7-9196-4A238FA3A696}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5CE19306-F09A-4DCC-BB85-07BEA7005933} = {1E8144B4-E356-46B4-B46F-6B51A9081FC6}
+		{C477FD2B-8EFF-4893-BFA8-43D5629A6058} = {40763926-5B49-4D86-999F-CE63816D7247}
+		{A7B71AC8-C571-4FCB-A865-A8595752D191} = {BA81EFA5-2412-4508-804E-C4F809D78D2C}
+		{EB6CE78E-A5B7-4B7F-9E68-E9CA1566FC09} = {BA81EFA5-2412-4508-804E-C4F809D78D2C}
+		{039A6D91-6C86-416A-ADD8-EE4E849CFB15} = {BA81EFA5-2412-4508-804E-C4F809D78D2C}
+		{95C2508B-8AFB-44F7-9196-4A238FA3A696} = {1E8144B4-E356-46B4-B46F-6B51A9081FC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A30539D6-1B36-4236-9F2C-DDBC73CB19C6}
