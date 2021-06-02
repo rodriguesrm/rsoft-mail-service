@@ -1,4 +1,4 @@
-﻿using RSoft.Mail.Business.Contracts;
+﻿using RSoft.Mail.Contract;
 
 namespace RSoft.Mail.Business.Models
 {
