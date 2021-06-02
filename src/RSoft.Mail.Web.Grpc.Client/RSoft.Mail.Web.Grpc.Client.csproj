@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Rodrigo Rodrigues</Authors>
+		<Company>RSoft gRpc Mail Service client package</Company>
+		<Description>RSoft gRpc Mail Service client package</Description>
+		<RepositoryUrl>https://github.com/rodriguesrm/rsoft-mail-service</RepositoryUrl>
+		<Version>1.0.0-rc1.0</Version>
+		<PackageTags>mail client rsoft grpc rpc</PackageTags>
+		<PackageLicenseFile>license.txt</PackageLicenseFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" Version="3.17.2" />
+		<PackageReference Include="Grpc.Net.Client" Version="2.37.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.38.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\docs\license.txt">
+		  <Pack>True</Pack>
+		  <PackagePath></PackagePath>
+		</None>
+		<None Include="..\Protos">
+			<Link>Protos</Link>
+		</None>
+		<ProjectReference Include="..\RSoft.Mail.Contract\RSoft.Mail.Contract.csproj" />
+		<Protobuf Include="..\Protos\mailsender.proto" GrpcServices="Client">
+			<Link>Protos\mailsender.proto</Link>
+		</Protobuf>
+
+	</ItemGroup>
+
+</Project>
