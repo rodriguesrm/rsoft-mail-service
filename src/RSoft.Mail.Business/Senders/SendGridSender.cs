@@ -7,6 +7,7 @@ using RSoft.Mail.Business.Enums;
 using RSoft.Mail.Business.Models;
 using RSoft.Mail.Business.Models.SendGrid;
 using RSoft.Mail.Business.Options;
+using RSoft.Mail.Contract;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Collections.Generic;
