@@ -32,6 +32,7 @@ namespace RSoft.Mail.Business.IoC
             services.Configure<RedirectToOptions>(options => configuration.GetSection("Sender:RedirectTo").Bind(options));
             services.Configure<SenderOptions>(options => configuration.GetSection("Sender").Bind(options));
             services.Configure<CultureOptions>(options => configuration.GetSection("Application:Culture").Bind(options));
+            services.Configure<ConnectionStrings>(options => configuration.GetSection("ConnectionStrings").Bind(options));
 
             services.AddScoped<IMailRepository, MailRepository>();
             services.AddScoped<IMailService, MailService>();
@@ -44,7 +45,6 @@ namespace RSoft.Mail.Business.IoC
                 case SenderType.Smtp:
                     //BACKLOG: NotImplementedException
                     throw new NotImplementedException();
-                    break;
                 case SenderType.SendGrid:
                     services.AddScoped<ISender, SendGridSender>();
                     services.AddScoped<ISendGridClient>(s => new SendGridClient(options.SendGrid.AppKey));
