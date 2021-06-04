@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using RSoft.Framework.Infra.Data.MongoDb.Creators;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RSoft.Framework.Infra.Data.MongoDb.Extensions;
 using RSoft.Framework.Options;
 using RSoft.Mail.Business.Contracts;
 using RSoft.Mail.Business.Enums;
@@ -9,6 +11,7 @@ using RSoft.Mail.Business.Senders;
 using RSoft.Mail.Business.Services;
 using SendGrid;
 using System;
+using System.Threading.Tasks;
 
 namespace RSoft.Mail.Business.IoC
 {
@@ -32,13 +35,13 @@ namespace RSoft.Mail.Business.IoC
             services.Configure<RedirectToOptions>(options => configuration.GetSection("Sender:RedirectTo").Bind(options));
             services.Configure<SenderOptions>(options => configuration.GetSection("Sender").Bind(options));
             services.Configure<CultureOptions>(options => configuration.GetSection("Application:Culture").Bind(options));
-            services.Configure<ConnectionStrings>(options => configuration.GetSection("ConnectionStrings").Bind(options));
 
             services.AddScoped<IMailRepository, MailRepository>();
             services.AddScoped<IMailService, MailService>();
 
+            services.AddMongoDbServices(configuration);
 
-            SenderOptions options = new SenderOptions();
+            SenderOptions options = new();
             configuration.Bind("Sender", options);
             switch (options.Type)
             {
@@ -51,9 +54,22 @@ namespace RSoft.Mail.Business.IoC
                     break;
             }
 
+            services.AddScoped<IConfigurationBuilder, ConfigurationBuilder>();
+
             return services;
 
         }
+
+        /// <summary>
+        /// Perform MongoDb migration (create database and collections)
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        public static void Migration(this IServiceProvider serviceProvider)
+            => Task.WhenAll(
+                serviceProvider
+                    .GetService<IDatabaseCreator>()
+                    .CreateDatabase()
+            );
 
     }
 
